@@ -1,0 +1,128 @@
+package in.ashokit.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
+
+import in.ashokit.bindings.ActivateAccount;
+import in.ashokit.bindings.Login;
+import in.ashokit.bindings.User;
+import in.ashokit.entity.UserMaster;
+import in.ashokit.repo.UserMasterRepo;
+
+@Service
+public class UserMgmtServiceImpl implements UserMgmtService {
+
+	@Autowired
+	private UserMasterRepo userMasterRepo;
+
+	@Override
+	public boolean saveUser(User user) {
+		UserMaster entity = new UserMaster();
+		BeanUtils.copyProperties(user, entity);
+
+		entity.setPassword(generateRandomPwd());
+		entity.setAccStatus("In-Active");
+
+		UserMaster save = userMasterRepo.save(entity);
+		return save.getUserId() != null;
+	}
+
+	@Override
+	public boolean activateUserAcc(ActivateAccount activateAcc) {
+		UserMaster entity = new UserMaster();
+		entity.setEmail(activateAcc.getEmail());
+		entity.setPassword(activateAcc.getTempPwd());
+
+		// select * from USER_MASTER where email=? & pwd=?
+		Example<UserMaster> of = Example.of(entity);
+		List<UserMaster> findAll = userMasterRepo.findAll(of);
+
+		if (findAll.isEmpty()) {
+			return false;
+		} else {
+			UserMaster userMaster = findAll.get(0);
+			userMaster.setPassword(activateAcc.getNewPwd());
+			userMaster.setAccStatus("Active");
+			userMasterRepo.save(userMaster);
+			return true;
+		}
+
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		List<UserMaster> findAll = userMasterRepo.findAll();
+		List<User> users = new ArrayList<>();
+		for (UserMaster entity : findAll) {
+			User user = new User();
+			BeanUtils.copyProperties(entity, user);
+			users.add(user);
+		}
+
+		return users;
+	}
+
+	@Override
+	public User getUserById(Integer userId) {
+		Optional<UserMaster> findById = userMasterRepo.findById(userId);
+		if(findById.isPresent()) {
+			User user=new User();
+			UserMaster userMaster = findById.get();
+			BeanUtils.copyProperties(userMaster, user);
+		
+		return null;
+	}
+
+	@Override
+	public boolean deleteUserById(Integer userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean changeAccountStatus(Integer userId, String accStatus) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String login(Login login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String forgotPwd(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String generateRandomPwd() {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		StringBuilder sb = new StringBuilder();
+
+		Random random = new Random();
+
+		int length = 6;
+
+		for (int i = 0; i < length; i++) {
+
+			int index = random.nextInt(alphabet.length());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+
+		String randomString = sb.toString();
+		return randomString;
+
+	}
+
+}

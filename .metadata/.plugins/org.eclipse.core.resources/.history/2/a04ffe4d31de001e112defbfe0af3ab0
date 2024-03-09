@@ -1,0 +1,7 @@
+package in.ashokit.service;
+
+import com.springboot.binding.EligResponse;
+
+public interface EligService {
+	public EligResponse determineEligibility(Long caseNum);
+}

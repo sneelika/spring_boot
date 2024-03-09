@@ -1,0 +1,12 @@
+package in.ashokit.service;
+
+import in.ashokit.bindings.User;
+
+public interface UserMgmtService {
+	public Boolean saveUser(User user);
+
+	public String activateAccount(String email);
+
+	public Boolean forgotPassword();
+
+}

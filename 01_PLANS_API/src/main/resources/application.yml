@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: root
+    password: Sayuru123**
+    url: jdbc:mysql://localhost:3306/jrtp
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+      
+plan-api:
+  messages:
+    planSaveSuccess: Plan saved successfully
+    planSaveFail: Plan save failed
+    planUpdateSuccess:  Plan updated successfully
+    planUpdateFail: Plan update failed
+    planDeleteSuccess:  Plan deleted successfully
+    planDeleteFail: Plan delete failed
+    planStatusChangeSuccess:  Plan status change successful
+    planStatusChangeFail: Plan status change failed

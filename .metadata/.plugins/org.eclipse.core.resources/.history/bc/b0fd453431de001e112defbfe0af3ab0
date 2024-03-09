@@ -1,0 +1,8 @@
+package in.ashokit.service;
+
+import com.springboot.binding.CitizenApp;
+
+public interface ArService {
+	public Integer createApplication(CitizenApp app);
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;in.ashokit.repo.DcIncome&apos; to &apos;DcIncomeRepo&apos;&#x0D;&#x0A;- Original project: &apos;05_DC_API&apos;&#x0D;&#x0A;- Original element: &apos;in.ashokit.repo.DcIncome&apos;&#x0D;&#x0A;- Renamed element: &apos;in.ashokit.repo.DcIncomeRepo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DcIncome&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.ashokit.repo{DcIncome.java[DcIncome" matchStrategy="1" name="DcIncomeRepo" qualified="false" references="true" similarDeclarations="false" stamp="1706720820904" textual="false" version="1.0"/>
+</session>

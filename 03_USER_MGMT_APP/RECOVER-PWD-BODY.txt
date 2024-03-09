@@ -1,0 +1,9 @@
+Hi {FULLNAME},<br/>
+<br/>
+
+Please find your password below
+<br/>
+Password: {PWD}
+<br/>
+Thanks,<br/>
+Admin Team.
