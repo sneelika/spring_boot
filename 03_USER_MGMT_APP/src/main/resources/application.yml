@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: root
-    password: Sayuru123**
-    url: jdbc:mysql://localhost:3306/jrtp
+    password: Password
+    url: jdbc:mysql://localhost:3306/sbms
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
